@@ -4,8 +4,8 @@
   "title": "Explain .gitignore usage",
   "titleGenerationStatus": "success",
   "createdAt": 1783526155189,
-  "updatedAt": 1783527319198,
-  "lastResponseAt": 1783527319198,
+  "updatedAt": 1783610031224,
+  "lastResponseAt": 1783610031224,
   "sessionId": "672a4fce-7af8-49d4-a6e4-4149568025cb",
   "providerState": {
     "providerSessionId": "672a4fce-7af8-49d4-a6e4-4149568025cb"
@@ -13,12 +13,12 @@
   "currentNote": "未命名.base",
   "usage": {
     "model": "haiku",
-    "inputTokens": 52,
+    "inputTokens": 174,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 26752,
+    "cacheReadInputTokens": 32000,
     "contextWindow": 200000,
-    "contextTokens": 26804,
-    "percentage": 13,
+    "contextTokens": 32174,
+    "percentage": 16,
     "contextWindowIsAuthoritative": true
   }
 }
