@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(pip install *)",
+      "Bash(pandoc *)",
+      "Bash(npm *)",
+      "Bash(node *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(rm *)",
+      "Bash(ls *)",
+      "Bash(dir *)",
+      "Bash(find *)",
+      "Bash(cat *)",
+      "Bash(echo *)",
+      "Bash(curl *)",
+      "WebSearch",
+      "WebFetch(*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_take_screenshot"
+    ],
+    "additionalDirectories": [
+      "D:\\文件\\GitHub\\BLS_vault",
+      "C:\\Users\\123\\Desktop",
+      "D:\\文件"
+    ]
+  }
+}
