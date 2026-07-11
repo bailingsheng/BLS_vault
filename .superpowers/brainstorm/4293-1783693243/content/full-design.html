@@ -1,0 +1,167 @@
+<h2>页面结构总览</h2>
+<p class="subtitle">俄罗斯国家馆 · 深红金色主题 · 自上而下 7 个区块</p>
+
+<div class="mockup">
+  <div class="mockup-header">完整页面线框图</div>
+  <div class="mockup-body">
+    <div style="display: flex; flex-direction: column; gap: 0; font-size: 9px; max-width: 600px; margin: 0 auto;">
+
+      <!-- 1. Nav -->
+      <div style="background: #0d0000; border: 1px solid #DAA520; border-radius: 4px 4px 0 0; padding: 8px 16px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="color: #DAA520; font-weight: bold; font-size: 11px;">🇷🇺 РОССИЯ</span>
+          <span style="color: #ccc;">俄罗斯国家馆</span>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <span style="color: #999;">首页</span>
+          <span style="color: #DAA520;">商品中心</span>
+          <span style="color: #999;">关于我们</span>
+        </div>
+      </div>
+      <div style="background: #1a1a1a; color: #666; text-align: center; padding: 2px; font-size: 7px;">① 顶部导航栏</div>
+
+      <!-- 2. Hero -->
+      <div style="background: linear-gradient(135deg, #8B0000 0%, #4a0000 50%, #1a0000 100%); padding: 36px 24px; text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 10px; left: 10px; color: rgba(218,165,32,0.15); font-size: 40px;">✦</div>
+        <div style="position: absolute; bottom: 10px; right: 20px; color: rgba(218,165,32,0.15); font-size: 40px;">✦</div>
+        <div style="position: relative; z-index: 1;">
+          <div style="border: 2px solid #DAA520; display: inline-block; padding: 12px 32px;">
+            <div style="color: #DAA520; font-size: 20px; letter-spacing: 8px; font-weight: bold;">俄罗斯国家馆</div>
+            <div style="color: #fff; font-size: 10px; letter-spacing: 2px; margin-top: 4px;">RUSSIAN NATIONAL PAVILION</div>
+          </div>
+          <div style="color: #ffd700; font-size: 9px; margin-top: 12px;">品味纯正俄罗斯 · 从这里开始</div>
+        </div>
+      </div>
+      <div style="background: #1a1a1a; color: #666; text-align: center; padding: 2px; font-size: 7px;">② 品牌 Hero 区 · 金色边框 + 俄式花纹装饰</div>
+
+      <!-- 3. Search -->
+      <div style="background: #0d0d0d; padding: 16px 24px; border-top: 1px solid #2a0000; border-bottom: 1px solid #2a0000;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid #444; border-radius: 20px; padding: 8px 16px; display: flex; align-items: center; gap: 6px; max-width: 400px; margin: 0 auto;">
+          <span>🔍</span>
+          <span style="color: #666;">搜索俄罗斯商品...</span>
+        </div>
+        <div style="display: flex; gap: 6px; margin-top: 10px; justify-content: center; flex-wrap: wrap;">
+          <span style="background: rgba(218,165,32,0.5); color: #000; padding: 3px 10px; border-radius: 10px;">🏷️ 蜂蜜</span>
+          <span style="background: rgba(218,165,32,0.3); color: #DAA520; padding: 3px 10px; border-radius: 10px;">🏷️ 伏特加</span>
+          <span style="background: rgba(218,165,32,0.3); color: #DAA520; padding: 3px 10px; border-radius: 10px;">🏷️ 套娃</span>
+        </div>
+      </div>
+      <div style="background: #1a1a1a; color: #666; text-align: center; padding: 2px; font-size: 7px;">③ 搜索 + 热门标签</div>
+
+      <!-- 4. Categories -->
+      <div style="background: #0d0d0d; padding: 12px 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+        <span style="background: #DAA520; color: #000; padding: 5px 14px; border-radius: 16px; font-weight: bold;">全部</span>
+        <span style="background: #1a1a1a; color: #ccc; padding: 5px 14px; border-radius: 16px; border: 1px solid #333;">🍫 食品酒水</span>
+        <span style="background: #1a1a1a; color: #ccc; padding: 5px 14px; border-radius: 16px; border: 1px solid #333;">🪆 工艺礼品</span>
+        <span style="background: #1a1a1a; color: #ccc; padding: 5px 14px; border-radius: 16px; border: 1px solid #333;">👶 母婴个护</span>
+        <span style="background: #1a1a1a; color: #ccc; padding: 5px 14px; border-radius: 16px; border: 1px solid #333;">🌾 粮油农产品</span>
+      </div>
+      <div style="background: #1a1a1a; color: #666; text-align: center; padding: 2px; font-size: 7px;">④ 分类筛选标签栏</div>
+
+      <!-- 5. Product Grid -->
+      <div style="background: #050505; padding: 16px 12px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+        <!-- 8 cards -->
+        <div style="background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 8px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">🍯</div>
+          <div style="color: #ddd; font-size: 8px;">巴什基尔蜂蜜</div>
+          <div style="color: #DAA520; font-size: 7px;">500g · 天然纯正</div>
+        </div>
+        <div style="background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 8px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">🍫</div>
+          <div style="color: #ddd; font-size: 8px;">爱莲娜巧克力</div>
+          <div style="color: #DAA520; font-size: 7px;">100g · 醇厚可可</div>
+        </div>
+        <div style="background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 8px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">🥃</div>
+          <div style="color: #ddd; font-size: 8px;">标准伏特加</div>
+          <div style="color: #DAA520; font-size: 7px;">500ml · 经典原味</div>
+        </div>
+        <div style="background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 8px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">🪆</div>
+          <div style="color: #ddd; font-size: 8px;">手工套娃</div>
+          <div style="color: #DAA520; font-size: 7px;">5件套 · 手绘工艺</div>
+        </div>
+        <div style="background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 8px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">💎</div>
+          <div style="color: #ddd; font-size: 8px;">琥珀吊坠</div>
+          <div style="color: #DAA520; font-size: 7px;">天然波罗的海琥珀</div>
+        </div>
+        <div style="background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 8px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">🧴</div>
+          <div style="color: #ddd; font-size: 8px;">天鹅绒护手霜</div>
+          <div style="color: #DAA520; font-size: 7px;">80ml · 沙棘精华</div>
+        </div>
+        <div style="background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 8px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">🌾</div>
+          <div style="color: #ddd; font-size: 8px;">马克发面粉</div>
+          <div style="color: #DAA520; font-size: 7px;">2kg · 高筋小麦粉</div>
+        </div>
+        <div style="background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px 8px; text-align: center;">
+          <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">🧀</div>
+          <div style="color: #ddd; font-size: 8px;">奶油奶酪</div>
+          <div style="color: #DAA520; font-size: 7px;">200g · 醇厚奶香</div>
+        </div>
+      </div>
+      <div style="background: #1a1a1a; color: #666; text-align: center; padding: 2px; font-size: 7px;">⑤ 4列商品卡片网格</div>
+
+      <!-- 6. Features -->
+      <div style="background: #0a0a0a; padding: 24px 16px; display: flex; gap: 12px; justify-content: center; border-top: 1px solid #1a0000;">
+        <div style="text-align: center; width: 80px;">
+          <div style="color: #DAA520; font-size: 16px;">✈️</div>
+          <div style="color: #ccc; font-size: 7px; margin-top: 4px;">源头直采</div>
+          <div style="color: #777; font-size: 6px;">俄罗斯原装进口</div>
+        </div>
+        <div style="text-align: center; width: 80px;">
+          <div style="color: #DAA520; font-size: 16px;">✅</div>
+          <div style="color: #ccc; font-size: 7px; margin-top: 4px;">正品保证</div>
+          <div style="color: #777; font-size: 6px;">官方授权认证</div>
+        </div>
+        <div style="text-align: center; width: 80px;">
+          <div style="color: #DAA520; font-size: 16px;">🚚</div>
+          <div style="color: #ccc; font-size: 7px; margin-top: 4px;">全国配送</div>
+          <div style="color: #777; font-size: 6px;">顺丰冷链直达</div>
+        </div>
+        <div style="text-align: center; width: 80px;">
+          <div style="color: #DAA520; font-size: 16px;">🛡️</div>
+          <div style="color: #ccc; font-size: 7px; margin-top: 4px;">无忧售后</div>
+          <div style="color: #777; font-size: 6px;">7天无理由退换</div>
+        </div>
+      </div>
+      <div style="background: #1a1a1a; color: #666; text-align: center; padding: 2px; font-size: 7px;">⑥ 服务保障区 · 信任要素</div>
+
+      <!-- 7. Footer -->
+      <div style="background: #0a0000; border-top: 2px solid #8B0000; padding: 16px 24px; text-align: center; border-radius: 0 0 4px 4px;">
+        <div style="color: #DAA520; font-size: 8px;">РОССИЯ · 俄罗斯国家馆</div>
+        <div style="color: #666; font-size: 7px; margin-top: 4px;">© 2026 Russian National Pavilion · 进博会官方授权</div>
+      </div>
+      <div style="background: #1a1a1a; color: #666; text-align: center; padding: 2px; font-size: 7px;">⑦ 底部信息栏</div>
+
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 16px;">
+  <h3>核心交互</h3>
+  <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+    <div style="background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; flex: 1; min-width: 140px; text-align: center;">
+      <div style="font-size: 20px;">🔍</div>
+      <div style="color: #DAA520; font-weight: bold; margin-top: 8px;">搜索过滤</div>
+      <div style="color: #999; font-size: 10px; margin-top: 4px;">实时筛选商品名称和描述</div>
+    </div>
+    <div style="background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; flex: 1; min-width: 140px; text-align: center;">
+      <div style="font-size: 20px;">🏷️</div>
+      <div style="color: #DAA520; font-weight: bold; margin-top: 8px;">分类切换</div>
+      <div style="color: #999; font-size: 10px; margin-top: 4px;">点击分类标签筛选商品</div>
+    </div>
+    <div style="background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; flex: 1; min-width: 140px; text-align: center;">
+      <div style="font-size: 20px;">✨</div>
+      <div style="color: #DAA520; font-weight: bold; margin-top: 8px;">悬停动效</div>
+      <div style="color: #999; font-size: 10px; margin-top: 4px;">卡片悬停金色光晕浮动</div>
+    </div>
+    <div style="background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; flex: 1; min-width: 140px; text-align: center;">
+      <div style="font-size: 20px;">📱</div>
+      <div style="color: #DAA520; font-weight: bold; margin-top: 8px;">响应式适配</div>
+      <div style="color: #999; font-size: 10px; margin-top: 4px;">PC 4列 / 平板 3列 / 手机 2列</div>
+    </div>
+  </div>
+</div>

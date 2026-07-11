@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>РОССИЯ · 俄罗斯国家馆</title>
+<style>
+/* ============ CSS Variables ============ */
+:root {
+  --bg-deep: #050505;
+  --bg-panel: #0d0c0c;
+  --bg-card: #131212;
+  --bg-card-hover: #1a1818;
+  --red-dark: #3d0000;
+  --red: #8B0000;
+  --red-bright: #a01010;
+  --gold: #C9A84C;
+  --gold-light: #D4AF5E;
+  --gold-pale: #e8d5a3;
+  --gold-dim: #8B732E;
+  --gold-bright: #F0D060;
+  --border-subtle: #1f1c18;
+  --border-card: #252220;
+  --border-gold: rgba(201, 168, 76, 0.35);
+  --text-primary: #ddd6c8;
+  --text-secondary: #9d9484;
+  --text-dim: #5e584c;
+  --text-white: #f5efe0;
+  --font-display: 'Times New Roman', '宋体', serif;
+  --font-body: 'PingFang SC', 'Microsoft YaHei', '微软雅黑', sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============ Reset & Base ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ============ Ornamental Background ============ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(139, 0, 0, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(201, 168, 76, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 70%, rgba(139, 0, 0, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle grain texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ Navigation ============ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(5, 4, 3, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border-gold);
+  transition: var(--transition);
+}
+
+.nav.scrolled {
+  background: rgba(5, 4, 3, 0.95);
+  border-bottom-color: rgba(201, 168, 76, 0.5);
+}
+
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-flag {
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  background: linear-gradient(180deg,
+    #fff 0%, #fff 33.33%,
+    #0039A6 33.33%, #0039A6 66.66%,
+    #D52B1E 66.66%, #D52B1E 100%);
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
+  flex-shrink: 0;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.nav-logo-sub {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  position: relative;
+  padding: 4px 0;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold-light);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+/* ============ Hero Section ============ */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px 80px;
+  overflow: hidden;
+}
+
+/* Hero decorative elements */
+.hero-ornament {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.06;
+}
+
+.hero-ornament--top-left {
+  top: 80px;
+  left: -40px;
+  font-size: 280px;
+  color: var(--gold);
+  transform: rotate(-15deg);
+}
+
+.hero-ornament--top-right {
+  top: 120px;
+  right: -30px;
+  font-size: 220px;
+  color: var(--gold);
+  transform: rotate(12deg);
+}
+
+.hero-ornament--bottom {
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 60px;
+  color: var(--gold);
+  opacity: 0.08;
+  letter-spacing: 40px;
+}
+
+/* Hero decorative lines */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid rgba(201, 168, 76, 0.1);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
+  border: 1px solid rgba(201, 168, 76, 0.05);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 700px;
+}
+
+/* Gold frame */
+.hero-frame {
+  position: relative;
+  display: inline-block;
+  padding: 48px 64px;
+  border: 2px solid var(--gold);
+  box-shadow:
+    inset 0 0 60px rgba(201, 168, 76, 0.08),
+    0 0 60px rgba(139, 0, 0, 0.3);
+  animation: frameGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes frameGlow {
+  0% { box-shadow: inset 0 0 60px rgba(201, 168, 76, 0.08), 0 0 60px rgba(139, 0, 0, 0.3); }
+  100% { box-shadow: inset 0 0 80px rgba(201, 168, 76, 0.15), 0 0 80px rgba(139, 0, 0, 0.45); }
+}
+
+/* Corner ornaments */
+.hero-frame::before,
+.hero-frame::after {
+  position: absolute;
+  color: var(--gold);
+  font-size: 20px;
+  opacity: 0.6;
+}
+
+.hero-frame::before {
+  content: '◆';
+  top: -11px;
+  left: -11px;
+}
+
+.hero-frame::after {
+  content: '◆';
+  bottom: -11px;
+  right: -11px;
+}
+
+.hero-frame-inner::before,
+.hero-frame-inner::after {
+  content: '◆';
+  position: absolute;
+  color: var(--gold);
+  font-size: 20px;
+  opacity: 0.6;
+}
+
+.hero-frame-inner::before {
+  top: -11px;
+  right: -11px;
+}
+
+.hero-frame-inner::after {
+  bottom: -11px;
+  left: -11px;
+}
+
+.hero-frame-inner {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  pointer-events: none;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: 12px;
+  font-weight: bold;
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-subtitle {
+  font-family: var(--font-display);
+  color: var(--text-white);
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+  letter-spacing: 4px;
+  margin-top: 12px;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+}
+
+.hero-tagline {
+  color: var(--gold-pale);
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-body);
+  opacity: 0.8;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 16px auto;
+  position: relative;
+}
+
+.hero-divider::after {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gold);
+  font-size: 12px;
+  background: var(--bg-deep);
+  padding: 0 8px;
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  z-index: 2;
+  animation: floatUpDown 2s ease-in-out infinite;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold-dim), transparent);
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ Section Styles ============ */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 80px 24px;
+}
+
+.section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  color: var(--text-white);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  text-align: center;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+
+.section-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 0 auto 48px;
+  position: relative;
+}
+
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* ============ Search Section ============ */
+.search-section {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.search-wrapper {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 50px;
+  padding: 12px 20px;
+  transition: var(--transition);
+  gap: 10px;
+}
+
+.search-bar:focus-within {
+  border-color: var(--border-gold);
+  box-shadow: 0 0 24px rgba(201, 168, 76, 0.08);
+}
+
+.search-icon {
+  color: var(--gold-dim);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  outline: none;
+  letter-spacing: 1px;
+}
+
+.search-input::placeholder {
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.search-clear {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 4px 8px;
+  border-radius: 50%;
+  transition: var(--transition);
+  display: none;
+}
+
+.search-clear.visible { display: block; }
+.search-clear:hover { color: var(--gold-light); }
+
+.hot-tags {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.hot-tag {
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  color: var(--gold-pale);
+  padding: 5px 16px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 1px;
+  font-family: var(--font-body);
+}
+
+.hot-tag:hover {
+  background: rgba(201, 168, 76, 0.18);
+  border-color: var(--gold-dim);
+  color: var(--gold-bright);
+}
+
+/* ============ Category Filter ============ */
+.categories {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.cat-btn {
+  background: transparent;
+  border: 1px solid var(--border-card);
+  color: var(--text-secondary);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 1px;
+  font-family: var(--font-body);
+}
+
+.cat-btn:hover {
+  border-color: var(--border-gold);
+  color: var(--text-white);
+}
+
+.cat-btn.active {
+  background: linear-gradient(135deg, var(--red), var(--red-dark));
+  border-color: var(--gold-dim);
+  color: var(--text-white);
+  box-shadow: 0 2px 16px rgba(139, 0, 0, 0.4);
+}
+
+.cat-count {
+  font-size: 0.7rem;
+  margin-left: 4px;
+  opacity: 0.7;
+}
+
+/* ============ Product Grid ============ */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 20px 16px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  animation: cardReveal 0.6s ease both;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger card reveals */
+.product-card:nth-child(1) { animation-delay: 0.05s; }
+.product-card:nth-child(2) { animation-delay: 0.10s; }
+.product-card:nth-child(3) { animation-delay: 0.15s; }
+.product-card:nth-child(4) { animation-delay: 0.20s; }
+.product-card:nth-child(5) { animation-delay: 0.10s; }
+.product-card:nth-child(6) { animation-delay: 0.15s; }
+.product-card:nth-child(7) { animation-delay: 0.20s; }
+.product-card:nth-child(8) { animation-delay: 0.25s; }
+.product-card:nth-child(9) { animation-delay: 0.15s; }
+.product-card:nth-child(10) { animation-delay: 0.20s; }
+.product-card:nth-child(11) { animation-delay: 0.25s; }
+.product-card:nth-child(12) { animation-delay: 0.30s; }
+.product-card:nth-child(n+13) { animation-delay: 0.25s; }
+
+/* Gold glow on hover */
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg,
+    rgba(201, 168, 76, 0.4),
+    transparent 40%,
+    transparent 60%,
+    rgba(201, 168, 76, 0.4));
+  opacity: 0;
+  transition: var(--transition);
+  z-index: 0;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-gold);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(201, 168, 76, 0.06);
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg,
+    rgba(139, 0, 0, 0.08),
+    rgba(201, 168, 76, 0.04));
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-name {
+  color: var(--text-white);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 6px;
+}
+
+.product-desc {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.product-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  background: linear-gradient(135deg, var(--red-bright), var(--red-dark));
+  color: var(--gold-pale);
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* ============ Empty State ============ */
+.empty-state {
+  display: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.empty-state.visible { display: block; }
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.empty-title {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.empty-desc {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+/* ============ Trust Section ============ */
+.trust-section {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.trust-item {
+  padding: 32px 16px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  transition: var(--transition);
+}
+
+.trust-item:hover {
+  border-color: var(--border-gold);
+}
+
+.trust-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.trust-title {
+  color: var(--gold-light);
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  font-family: var(--font-display);
+}
+
+.trust-desc {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+}
+
+/* ============ Footer ============ */
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--bg-deep);
+  border-top: 1px solid var(--red-dark);
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 1.1rem;
+  letter-spacing: 6px;
+  margin-bottom: 8px;
+}
+
+.footer-info {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+}
+
+.footer-ornament {
+  color: var(--gold-dim);
+  font-size: 0.6rem;
+  letter-spacing: 8px;
+  margin-top: 12px;
+  opacity: 0.5;
+}
+
+/* ============ Result Count ============ */
+.result-count {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+}
+
+.result-count span {
+  color: var(--gold-light);
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 1023px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .hero-frame { padding: 36px 40px; }
+}
+
+@media (max-width: 767px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(5, 4, 3, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 24px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-gold);
+    text-align: center;
+  }
+
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .hero-frame { padding: 32px 28px; }
+  .hero-title { letter-spacing: 6px; }
+  .hero-subtitle { letter-spacing: 2px; }
+  .hero-tagline { letter-spacing: 1px; font-size: 0.8rem; }
+  .hero-ornament--top-left { font-size: 140px; left: -60px; }
+  .hero-ornament--top-right { font-size: 120px; right: -50px; }
+  .hero::before, .hero::after { display: none; }
+
+  .section { padding: 56px 16px; }
+  .categories { gap: 8px; }
+  .cat-btn { padding: 8px 16px; font-size: 0.78rem; }
+  .product-card { padding: 14px 10px 18px; }
+  .product-name { font-size: 0.82rem; }
+  .product-desc { font-size: 0.7rem; }
+
+  .search-bar { padding: 10px 16px; }
+  .search-input { font-size: 0.85rem; }
+  .hot-tag { font-size: 0.7rem; padding: 4px 12px; }
+}
+
+@media (max-width: 400px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .hero-frame { padding: 24px 20px; }
+  .hero-title { letter-spacing: 4px; font-size: 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ Navigation ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" aria-label="俄罗斯国家馆首页">
+      <div class="nav-flag" aria-hidden="true"></div>
+      <div>
+        <span class="nav-logo-text">РОССИЯ</span>
+        <span class="nav-logo-sub">俄罗斯国家馆</span>
+      </div>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="切换导航菜单">菜单</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="active">首页</a></li>
+      <li><a href="#products">商品中心</a></li>
+      <li><a href="#trust">关于我们</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ Hero ============ -->
+<section class="hero" id="hero">
+  <div class="hero-ornament hero-ornament--top-left" aria-hidden="true">✦ ✦ ✦</div>
+  <div class="hero-ornament hero-ornament--top-right" aria-hidden="true">❖ ❖</div>
+  <div class="hero-ornament hero-ornament--bottom" aria-hidden="true">◆ ◆ ◆ ◆ ◆</div>
+
+  <div class="hero-content">
+    <div class="hero-frame">
+      <div class="hero-frame-inner"></div>
+      <h1 class="hero-title">俄罗斯国家馆</h1>
+      <p class="hero-subtitle">Russian National Pavilion</p>
+    </div>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">品味纯正俄罗斯 · 从这里开始</p>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>探索</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============ Search ============ -->
+<section class="section search-section" id="searchSection">
+  <div class="section-inner">
+    <div class="search-wrapper">
+      <div class="search-bar">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input
+          type="text"
+          class="search-input"
+          id="searchInput"
+          placeholder="搜索俄罗斯商品..."
+          autocomplete="off"
+        >
+        <button class="search-clear" id="searchClear" aria-label="清除搜索">✕</button>
+      </div>
+      <div class="hot-tags">
+        <button class="hot-tag" data-search="蜂蜜">蜂蜜</button>
+        <button class="hot-tag" data-search="伏特加">伏特加</button>
+        <button class="hot-tag" data-search="套娃">套娃</button>
+        <button class="hot-tag" data-search="巧克力">巧克力</button>
+        <button class="hot-tag" data-search="琥珀">琥珀</button>
+        <button class="hot-tag" data-search="面粉">面粉</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Products ============ -->
+<section class="section" id="products">
+  <div class="section-inner">
+    <p class="section-label">Product Center</p>
+    <h2 class="section-title">商品中心</h2>
+    <div class="section-divider"></div>
+
+    <!-- Categories -->
+    <div class="categories" id="categories">
+      <button class="cat-btn active" data-category="all">
+        全部<span class="cat-count" id="countAll"></span>
+      </button>
+      <button class="cat-btn" data-category="食品酒水">
+        🍫 食品酒水<span class="cat-count" id="countFood"></span>
+      </button>
+      <button class="cat-btn" data-category="工艺礼品">
+        🪆 工艺礼品<span class="cat-count" id="countCraft"></span>
+      </button>
+      <button class="cat-btn" data-category="母婴个护">
+        👶 母婴个护<span class="cat-count" id="countCare"></span>
+      </button>
+      <button class="cat-btn" data-category="粮油农产品">
+        🌾 粮油农产品<span class="cat-count" id="countFarm"></span>
+      </button>
+    </div>
+
+    <!-- Result count -->
+    <p class="result-count" id="resultCount"></p>
+
+    <!-- Product Grid -->
+    <div class="products-grid" id="productsGrid"></div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🔍</div>
+      <p class="empty-title">未找到相关商品</p>
+      <p class="empty-desc">试试其他关键词或分类筛选</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Trust ============ -->
+<section class="section trust-section" id="trust">
+  <div class="section-inner">
+    <p class="section-label">Our Promise</p>
+    <h2 class="section-title">服务保障</h2>
+    <div class="section-divider"></div>
+
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">✈️</span>
+        <p class="trust-title">源头直采</p>
+        <p class="trust-desc">俄罗斯原装进口</p>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">✅</span>
+        <p class="trust-title">正品保证</p>
+        <p class="trust-desc">官方授权认证</p>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">🚚</span>
+        <p class="trust-title">全国配送</p>
+        <p class="trust-desc">顺丰冷链直达</p>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon" aria-hidden="true">🛡️</span>
+        <p class="trust-title">无忧售后</p>
+        <p class="trust-desc">七天无理由退换</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer class="footer">
+  <p class="footer-brand">РОССИЯ · 俄罗斯国家馆</p>
+  <p class="footer-info">© 2026 Russian National Pavilion · 中国国际进口博览会官方授权</p>
+  <p class="footer-ornament" aria-hidden="true">◆ ◆ ◆ ◆ ◆ ◆ ◆</p>
+</footer>
+
+<!-- ============ Scripts ============ -->
+<script>
+// ============ Product Data ============
+const products = [
+  // 食品酒水
+  { id: 1,  name: '巴什基尔蜂蜜',     category: '食品酒水', desc: '500g · 天然百花蜜',        emoji: '🍯', tags: ['蜂蜜', '天然', '百花'], badge: '热卖' },
+  { id: 2,  name: '爱莲娜巧克力',     category: '食品酒水', desc: '100g · 75%醇厚可可',       emoji: '🍫', tags: ['巧克力', '可可', '糖果'], badge: '' },
+  { id: 3,  name: '俄罗斯标准伏特加', category: '食品酒水', desc: '500ml · 经典原味',          emoji: '🥃', tags: ['伏特加', '酒', '经典'], badge: '' },
+  { id: 4,  name: '贝加尔湖矿泉水',   category: '食品酒水', desc: '1.5L · 天然含气',           emoji: '💧', tags: ['矿泉水', '贝加尔湖'], badge: '' },
+  { id: 5,  name: '黑鱼子酱',         category: '食品酒水', desc: '100g · 鲟鱼籽 · 高端礼盒',  emoji: '🫙', tags: ['鱼子酱', '高端', '礼盒'], badge: '精品' },
+  { id: 6,  name: '传统俄式蜂蜜蛋糕', category: '食品酒水', desc: '400g · 经典提拉米苏风味',   emoji: '🍰', tags: ['蛋糕', '甜点', '蜂蜜'], badge: '' },
+
+  // 工艺礼品
+  { id: 7,  name: '手工彩绘套娃',      category: '工艺礼品', desc: '5件套 · 经典花卉图案',      emoji: '🪆', tags: ['套娃', '手工', '彩绘'], badge: '精选' },
+  { id: 8,  name: '波罗的海琥珀吊坠',  category: '工艺礼品', desc: '天然琥珀 · 925银镶嵌',       emoji: '💎', tags: ['琥珀', '吊坠', '波罗的海'], badge: '精品' },
+  { id: 9,  name: '霍赫洛马漆器盒',    category: '工艺礼品', desc: '15cm · 描金花卉 · 手工',     emoji: '🎁', tags: ['漆器', '盒子', '描金'], badge: '' },
+  { id: 10, name: '巴甫洛沃羊毛披肩',  category: '工艺礼品', desc: '180×70cm · 100%纯羊毛',     emoji: '🧣', tags: ['披肩', '羊毛', '围巾'], badge: '' },
+  { id: 11, name: '俄罗斯传统茶炊',    category: '工艺礼品', desc: '3L · 黄铜手工打造',          emoji: '🫖', tags: ['茶炊', '铜器', '传统'], badge: '收藏' },
+
+  // 母婴个护
+  { id: 12, name: '天鹅绒护手霜',      category: '母婴个护', desc: '80ml · 沙棘精华 · 滋润',     emoji: '🧴', tags: ['护手霜', '沙棘', '护肤'], badge: '热卖' },
+  { id: 13, name: '婴儿配方奶粉',      category: '母婴个护', desc: '800g · 0-6月龄 · 贴近母乳',  emoji: '🍼', tags: ['奶粉', '婴儿', '配方'], badge: '' },
+  { id: 14, name: '西伯利亚沙棘面霜',  category: '母婴个护', desc: '50ml · 有机沙棘油 · 修复',   emoji: '✨', tags: ['面霜', '沙棘', '有机'], badge: '新品' },
+  { id: 15, name: '天然桦树皂',        category: '母婴个护', desc: '100g · 桦树汁 · 温和清洁',   emoji: '🧼', tags: ['肥皂', '桦树', '天然'], badge: '' },
+
+  // 粮油农产品
+  { id: 16, name: '马克发高筋面粉',    category: '粮油农产品', desc: '2kg · 高筋小麦粉 · 烘焙',   emoji: '🌾', tags: ['面粉', '小麦', '烘焙'], badge: '热卖' },
+  { id: 17, name: '阿尔泰葵花籽油',    category: '粮油农产品', desc: '1L · 一级压榨 · 非转基因',  emoji: '🫒', tags: ['食用油', '葵花籽', '压榨'], badge: '' },
+  { id: 18, name: '俄罗斯奶油奶酪',    category: '粮油农产品', desc: '200g · 全脂鲜奶发酵',       emoji: '🧀', tags: ['奶酪', '奶油', '奶制品'], badge: '' },
+  { id: 19, name: '北极深海鳕鱼',      category: '粮油农产品', desc: '500g · 急冻锁鲜 · 无刺',    emoji: '🐟', tags: ['海鲜', '鳕鱼', '冷冻'], badge: '' },
+  { id: 20, name: '沃洛格达黄油',      category: '粮油农产品', desc: '200g · 82%乳脂 · 传统搅制', emoji: '🧈', tags: ['黄油', '乳脂', '烘焙'], badge: '精选' },
+];
+
+// ============ State ============
+let currentCategory = 'all';
+let currentSearch = '';
+
+// ============ DOM Refs ============
+const productsGrid = document.getElementById('productsGrid');
+const emptyState = document.getElementById('emptyState');
+const resultCount = document.getElementById('resultCount');
+const searchInput = document.getElementById('searchInput');
+const searchClear = document.getElementById('searchClear');
+const categoryBtns = document.querySelectorAll('.cat-btn');
+const hotTags = document.querySelectorAll('.hot-tag');
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+const nav = document.getElementById('nav');
+
+// ============ Render Products ============
+function getFilteredProducts() {
+  return products.filter(p => {
+    const matchCategory = currentCategory === 'all' || p.category === currentCategory;
+    const matchSearch = !currentSearch ||
+      p.name.includes(currentSearch) ||
+      p.desc.includes(currentSearch) ||
+      p.tags.some(t => t.includes(currentSearch));
+    return matchCategory && matchSearch;
+  });
+}
+
+function renderProducts() {
+  const filtered = getFilteredProducts();
+  productsGrid.innerHTML = '';
+
+  if (filtered.length === 0) {
+    productsGrid.style.display = 'none';
+    emptyState.classList.add('visible');
+    resultCount.textContent = '';
+  } else {
+    productsGrid.style.display = '';
+    emptyState.classList.remove('visible');
+    resultCount.innerHTML = `共展示 <span>${filtered.length}</span> 件商品`;
+
+    filtered.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+        <div class="product-image" aria-hidden="true">${p.emoji}</div>
+        <p class="product-name">${p.name}</p>
+        <p class="product-desc">${p.desc}</p>
+      `;
+      productsGrid.appendChild(card);
+    });
+  }
+}
+
+// ============ Category Handling ============
+function updateCategoryCounts() {
+  const allCount = products.length;
+  const counts = {};
+  products.forEach(p => {
+    counts[p.category] = (counts[p.category] || 0) + 1;
+  });
+
+  document.getElementById('countAll').textContent = `(${allCount})`;
+  document.getElementById('countFood').textContent = `(${counts['食品酒水'] || 0})`;
+  document.getElementById('countCraft').textContent = `(${counts['工艺礼品'] || 0})`;
+  document.getElementById('countCare').textContent = `(${counts['母婴个护'] || 0})`;
+  document.getElementById('countFarm').textContent = `(${counts['粮油农产品'] || 0})`;
+}
+
+function setCategory(category) {
+  currentCategory = category;
+  categoryBtns.forEach(b => {
+    b.classList.toggle('active', b.dataset.category === category);
+  });
+  renderProducts();
+}
+
+categoryBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    setCategory(btn.dataset.category);
+  });
+});
+
+// ============ Search Handling ============
+function setSearch(value) {
+  currentSearch = value.trim();
+  searchInput.value = currentSearch;
+  searchClear.classList.toggle('visible', currentSearch.length > 0);
+  renderProducts();
+}
+
+searchInput.addEventListener('input', () => {
+  setSearch(searchInput.value);
+});
+
+searchClear.addEventListener('click', () => {
+  setSearch('');
+  searchInput.focus();
+});
+
+hotTags.forEach(tag => {
+  tag.addEventListener('click', () => {
+    setSearch(tag.dataset.search);
+    searchInput.focus();
+    // Scroll to search area
+    document.getElementById('searchSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ============ Navigation ============
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  navToggle.textContent = navLinks.classList.contains('open') ? '关闭' : '菜单';
+});
+
+// Close mobile nav on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.textContent = '菜单';
+  });
+});
+
+// Scroll effect for nav
+let lastScrollY = 0;
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  nav.classList.toggle('scrolled', scrollY > 50);
+
+  // Highlight active nav link based on scroll position
+  const sections = ['hero', 'products', 'trust'];
+  const navAs = navLinks.querySelectorAll('a');
+  for (let i = sections.length - 1; i >= 0; i--) {
+    const el = document.getElementById(sections[i]);
+    if (el && el.getBoundingClientRect().top <= 200) {
+      navAs.forEach(a => a.classList.remove('active'));
+      navAs[i].classList.add('active');
+      break;
+    }
+  }
+
+  lastScrollY = scrollY;
+}, { passive: true });
+
+// ============ Init ============
+function init() {
+  updateCategoryCounts();
+  renderProducts();
+  // Set initial "all" count display
+  document.getElementById('countAll').textContent = `(${products.length})`;
+}
+
+init();
+</script>
+
+</body>
+</html>
