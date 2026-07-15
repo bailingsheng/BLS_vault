@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日资讯日报 — 2026年7月15日</title>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --card-bg: #ffffff;
+    --border: #e8e5df;
+    --text: #1e1e1e;
+    --text-secondary: #555;
+    --text-muted: #8c8c8c;
+    --accent: #c75b39;
+    --blue: #3b6fb6;
+    --green: #4a7c59;
+    --radius: 12px;
+    --max-w: 880px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Top Nav Bar ── */
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,248,245,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    gap: 4px; padding: 0 24px; height: 54px;
+  }
+  .topbar a {
+    text-decoration: none; font-size: 15px; font-weight: 500;
+    color: var(--text-muted); padding: 8px 20px; border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .topbar a:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+  .topbar a.active { color: var(--accent); background: rgba(199,91,57,0.08); font-weight: 600; }
+  .topbar .brand {
+    font-weight: 700; font-size: 16px; color: var(--text);
+    margin-right: 24px; letter-spacing: -0.3px;
+  }
+
+  /* ── Container ── */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+
+  /* ── Home / Landing ── */
+  .home-hero {
+    text-align: center; padding: 64px 0 48px;
+  }
+  .home-hero .tag {
+    display: inline-block; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--accent); background: rgba(199,91,57,0.07);
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 18px;
+  }
+  .home-hero h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.5px; }
+  .home-hero .sub { font-size: 15px; color: var(--text-muted); margin-top: 8px; }
+
+  .entry-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-bottom: 56px;
+  }
+  .entry-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 36px 28px 32px;
+    cursor: pointer; transition: all 0.25s;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .entry-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+  .entry-card .icon { font-size: 36px; margin-bottom: 16px; }
+  .entry-card h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .entry-card .desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .entry-card .count {
+    display: inline-block; margin-top: 16px; font-size: 12px; font-weight: 600;
+    color: var(--accent); background: rgba(199,91,57,0.08);
+    padding: 3px 12px; border-radius: 12px;
+  }
+
+  /* ── Section Pages ── */
+  .page { display: none; padding-bottom: 64px; }
+  .page.active { display: block; }
+
+  .page-header {
+    text-align: center; padding: 48px 0 36px;
+  }
+  .page-header h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.4px; }
+  .page-header .sub { font-size: 14px; color: var(--text-muted); margin-top: 6px; }
+
+  .section-head {
+    display: flex; align-items: center; gap: 10px;
+    margin: 40px 0 18px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-head .dot {
+    width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+  }
+  .section-head h3 { font-size: 16px; font-weight: 600; }
+
+  /* ── Card ── */
+  .card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 26px 30px;
+    margin-bottom: 14px; transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 2px 14px rgba(0,0,0,0.04); }
+
+  .card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 10px; }
+  .card-top .stars { font-size: 13px; white-space: nowrap; letter-spacing: 1.5px; flex-shrink: 0; margin-top: 3px; }
+  .stars.s5 { color: #c75b39; }
+  .stars.s4 { color: #c75b39; }
+  .stars.s3 { color: #b0a089; }
+  .card-title { font-size: 17px; font-weight: 650; line-height: 1.5; flex: 1; }
+
+  .card-meta {
+    font-size: 13px; color: var(--text-muted); margin-bottom: 14px;
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+  }
+  .card-meta a {
+    color: var(--blue); text-decoration: none;
+    border-bottom: 1px solid rgba(59,111,182,0.2);
+    transition: border-color 0.15s;
+  }
+  .card-meta a:hover { border-color: var(--blue); }
+
+  .card-body { font-size: 15px; color: var(--text-secondary); line-height: 1.8; }
+  .card-body a {
+    color: var(--blue); text-decoration: none;
+    border-bottom: 1px solid rgba(59,111,182,0.2);
+  }
+  .card-body a:hover { border-color: var(--blue); }
+
+  .card-insight {
+    margin-top: 16px; padding: 14px 18px;
+    background: #faf7f3; border-radius: 8px;
+    font-size: 14px; color: #6b5e53; line-height: 1.7;
+  }
+  .card-insight::before {
+    content: '分析 · '; font-weight: 600; color: var(--accent);
+    font-size: 12px; letter-spacing: 0.3px;
+  }
+
+  /* ── Table ── */
+  .card-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 6px; }
+  .card-table th {
+    text-align: left; color: var(--text-muted); font-weight: 500; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.4px;
+    padding: 8px 14px; border-bottom: 1px solid var(--border);
+  }
+  .card-table td {
+    padding: 10px 14px; border-bottom: 1px solid #f0ede7;
+    color: var(--text-secondary); line-height: 1.6;
+  }
+  .card-table tr:last-child td { border-bottom: none; }
+  .card-table .hl { color: var(--text); font-weight: 600; }
+
+  /* ── Summary ── */
+  .summary { margin: 56px 0 40px; padding: 36px 0 0; border-top: 1px solid var(--border); }
+  .summary h2 { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 28px; }
+  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .summary-col h3 { font-size: 14px; font-weight: 600; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .summary-item { padding: 10px 0; border-bottom: 1px solid #f0ede7; }
+  .summary-item:last-child { border-bottom: none; }
+  .summary-item .rank { font-size: 26px; font-weight: 700; color: #e0d8cc; line-height: 1; }
+  .summary-item .stitle { font-size: 14px; font-weight: 600; margin: 3px 0 2px; line-height: 1.4; }
+  .summary-item .sdesc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center; padding: 32px 0 52px;
+    color: var(--text-muted); font-size: 13px;
+    border-top: 1px solid var(--border); margin-top: 40px;
+  }
+  .footer p { margin-top: 6px; }
+
+  /* ── Back to top ── */
+  .back-top {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--card-bg); border: 1px solid var(--border);
+    color: var(--text-muted); font-size: 18px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; opacity: 0; pointer-events: none; z-index: 99;
+  }
+  .back-top.show { opacity: 1; pointer-events: auto; }
+  .back-top:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Responsive ── */
+  @media (max-width: 720px) {
+    .entry-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .card { padding: 20px 20px; }
+    .card-title { font-size: 15px; }
+    .home-hero h1 { font-size: 26px; }
+    .topbar a { font-size: 13px; padding: 6px 10px; }
+    .topbar .brand { font-size: 14px; margin-right: 8px; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .topbar, .back-top { display: none; }
+    .card { box-shadow: none; break-inside: avoid; }
+    .page { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══ -->
+<nav class="topbar" id="topbar">
+  <span class="brand">Daily Report</span>
+  <a href="#" data-page="home" class="active">首页</a>
+  <a href="#" data-page="ai">AI 快讯</a>
+  <a href="#" data-page="stock">股市</a>
+  <a href="#" data-page="exam">考研</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════ HOME PAGE ═══════════ -->
+<div class="page active" id="page-home">
+  <div class="home-hero">
+    <div class="tag">2026.07.15 · 星期三</div>
+    <h1>每日资讯日报</h1>
+    <p class="sub">过去24小时 · AI 技术快讯 + 股市行情 + 考研备考</p>
+  </div>
+
+  <div class="entry-grid">
+    <a class="entry-card" href="#" data-page="ai" onclick="switchPage('ai')">
+      <div class="icon">🤖</div>
+      <h2>AI 技术快讯</h2>
+      <p class="desc">大模型动态、开源生态、开发工具、行业政策——只收录真正重要的变化。</p>
+      <span class="count">7 条今日资讯</span>
+    </a>
+    <a class="entry-card" href="#" data-page="stock" onclick="switchPage('stock')">
+      <div class="icon">📈</div>
+      <h2>股市行情简报</h2>
+      <p class="desc">宏观市场、AI 产业链、热点板块轮动——聚焦影响今日市场的关键事件。</p>
+      <span class="count">3 条今日资讯</span>
+    </a>
+    <a class="entry-card" href="#" data-page="exam" onclick="switchPage('exam')">
+      <div class="icon">🎓</div>
+      <h2>考研备考专栏</h2>
+      <p class="desc">核工程/核技术方向——招生政策、择校数据、每日备考要点。</p>
+      <span class="count">3 条今日资讯</span>
+    </a>
+  </div>
+
+  <!-- Quick Top 3 preview on home -->
+  <div class="summary">
+    <h2>今日 Top 3 速览</h2>
+    <div class="summary-grid">
+      <div class="summary-col">
+        <h3>🤖 AI</h3>
+        <div class="summary-item"><div class="rank">01</div><div class="stitle">OpenAI 首款硬件曝光</div><div class="sdesc">无屏AI音箱+Anthropic三星2nm造芯</div></div>
+        <div class="summary-item"><div class="rank">02</div><div class="stitle">哈萨比斯：AGI数年之内</div><div class="sdesc">提议建立AI安全标准机构</div></div>
+        <div class="summary-item"><div class="rank">03</div><div class="stitle">Grok隐私翻车+AI监管施行</div><div class="sdesc">信任危机从隐忧变公众事件</div></div>
+      </div>
+      <div class="summary-col">
+        <h3>📈 股市</h3>
+        <div class="summary-item"><div class="rank">01</div><div class="stitle">科创50大跌3.67%</div><div class="sdesc">半导体集体调整，拥挤度出清</div></div>
+        <div class="summary-item"><div class="rank">02</div><div class="stitle">创新药涨停潮</div><div class="sdesc">高低切换逻辑明确</div></div>
+        <div class="summary-item"><div class="rank">03</div><div class="stitle">美国CPI超预期降温</div><div class="sdesc">加息压力缓解，油价是变数</div></div>
+      </div>
+      <div class="summary-col">
+        <h3>🎓 考研</h3>
+        <div class="summary-item"><div class="rank">01</div><div class="stitle">多所985停招学硕</div><div class="sdesc">27考研三大改革全面落地</div></div>
+        <div class="summary-item"><div class="rank">02</div><div class="stitle">西交核科学A+性价比最高</div><div class="sdesc">统招~60人，核工程价值洼地</div></div>
+        <div class="summary-item"><div class="rank">03</div><div class="stitle">7-9月信息密集窗口</div><div class="sdesc">每周查看目标院校研招网</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ AI PAGE ═══════════ -->
+<div class="page" id="page-ai">
+  <div class="page-header">
+    <h1>🤖 AI 技术快讯</h1>
+    <p class="sub">2026年7月14日 - 15日 · 仅收录真正有价值的变化</p>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s5">★★★★★</span>
+      <div class="card-title">OpenAI 首款硬件曝光：可移动、无屏 AI 伴侣音箱</div>
+    </div>
+    <div class="card-meta">
+      <a href="https://www.theedgesingapore.com/news/tech/openais-first-device-movable-screenless-speaker-built-ai-companion--sources" target="_blank">The Edge Singapore</a>
+      <a href="https://www.antaranews.com/berita/5649909/perangkat-keras-pertama-openai-dilaporkan-sebagai-asisten-rumah-pintar" target="_blank">ANTARA News</a>
+      <span>7月15日</span>
+    </div>
+    <div class="card-body">
+      OpenAI 正在开发首款消费硬件——由 ChatGPT 驱动的无屏智能音箱，配备机械可动部件，搭载摄像头与传感器感知环境，支持 GPT-Live 高级语音模式。前苹果工程师参与设计（含 Jony Ive 的 LoveFrom 工作室），计划年内亮相、2027 年出货。OpenAI 为组建硬件部门以 <strong>65 亿美元</strong>收购 io Products。值得注意的是，<strong>苹果已起诉 OpenAI</strong> 指控其窃取商业机密，可能影响产品发布节奏。
+    </div>
+    <div class="card-insight">OpenAI 从"卖 API"到"卖硬件"的跨越，意味着大模型公司正在寻找新的增长曲线。但苹果的诉讼是最大不确定性——如果败诉，可能直接扼杀这款产品。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s5">★★★★★</span>
+      <div class="card-title">Anthropic 与三星洽谈定制 2nm AI 推理芯片，二级估值达 1.2 万亿</div>
+    </div>
+    <div class="card-meta">
+      <a href="https://www.tmtpost.com/8064257.html" target="_blank">钛媒体</a>
+      <a href="https://www.163.com/dy/article/L1S6CHSK0511BLFD.html" target="_blank">网易</a>
+      <span>7月15日</span>
+    </div>
+    <div class="card-body">
+      Anthropic 正与三星代工洽谈，为 Claude 模型定制专用 AI 推理芯片（ASIC），采用 <strong>2nm 工艺</strong>，目标是剔除 GPU 中不必要的图形功能，将单次查询成本降至 GPU 推理的 <strong>1/3 到 1/4</strong>。三星同时还在推进特斯拉 AI5 芯片流片。大模型公司"集体造芯"已成趋势——OpenAI、Google、Meta、微软、亚马逊均在推进自研芯片。另据 SemiAnalysis，Anthropic 二级市场估值已达 <strong>1.2 万亿美元</strong>。
+    </div>
+    <div class="card-insight">摆脱英伟达依赖不再是口号，而是行动。三星入局打破了台积电在 AI 芯片代工的垄断预期——对行业是好事，对英伟达是隐忧（客户正在变成竞争对手）。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s5">★★★★★</span>
+      <div class="card-title">Nvidia 在美出口管制下将亚洲 AI 芯片客户名单减半</div>
+    </div>
+    <div class="card-meta">
+      <a href="https://www.bernama.com/tv/news.php?id=2580948" target="_blank">Bernama</a>
+      <span>7月15日</span>
+    </div>
+    <div class="card-body">
+      美国持续收紧 AI 芯片出口管制，Nvidia 已将新加坡、马来西亚和日本的获批客户名单<strong>削减超过一半</strong>，主要针对通过第三国向中国输送芯片的"新云端"（neocloud）AI 训练服务商。与此同时，中国 AI 芯片自给率已从 2021 年的 10% 升至 2026 年的 <strong>41%</strong>（摩根士丹利数据）。
+    </div>
+    <div class="card-insight">芯片管制正在从"限制流向中国"升级为"限制所有可能的间接通道"。短期利好国产芯片替代，长期将加速中美 AI 生态的"双轨制"分化。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s5">★★★★★</span>
+      <div class="card-title">Google DeepMind CEO 哈萨比斯：AGI 数年之内到来，提议建立 AI 安全标准机构</div>
+    </div>
+    <div class="card-meta">
+      <a href="https://indianexpress.com/article/technology/artificial-intelligence/demis-hassabis-agi-proposes-frontier-ai-standards-body-10786981/" target="_blank">Indian Express</a>
+      <a href="https://36kr.com/p/3896297861547655" target="_blank">36氪</a>
+      <span>7月15日</span>
+    </div>
+    <div class="card-body">
+      诺贝尔奖得主、Google DeepMind CEO 哈萨比斯发表重磅署名文章：① AGI 可能在<strong>"数年之内"</strong>到来，其影响相当于"10 倍工业革命 × 10 倍速度"；② 提议建立美国主导的<strong>"前沿 AI 标准机构"</strong>（参照金融业 FINRA 模式），要求前沿模型发布前接受 30 天安全评估（测试网络安全、生物威胁、欺骗行为）；③ 评估先从自愿开始，最终变为强制。他将当前时代描述为"奇点的山麓"。
+    </div>
+    <div class="card-insight">这是全球最顶尖 AI 实验室负责人对 AGI 时间线最明确的一次表态。如果"30 天安全评估"提议落地，将彻底改变前沿模型的发布节奏——从"造好就发"变为"先审后发"。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s4">★★★★☆</span>
+      <div class="card-title">Grok Build CLI 被曝偷偷上传用户完整代码仓库</div>
+    </div>
+    <div class="card-meta">
+      <span>综合报道</span>
+      <span>7月15日</span>
+    </div>
+    <div class="card-body">
+      xAI（SpaceXAI）旗下 Grok Build CLI（v0.2.93）被发现在用户关闭"帮助改进模型"选项的情况下，<strong>仍上传完整代码仓库</strong>（含 API 密钥等敏感信息）。Elon Musk 回应称将删除所有数据。Anthropic 借机在《纽约时报》刊登整版广告——"我们不会拿你的代码训练模型，你可以问我们任何刁钻的问题"。
+    </div>
+    <div class="card-insight">继 Copilot 隐私争议后，AI 编程工具又一次隐私翻车。对开发者而言，"数据去哪了"正在变得和"代码写得好不好"同等重要。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s4">★★★★☆</span>
+      <div class="card-title">《AI 拟人化互动管理办法》正式施行：豆包、千问下线智能体，网易妙时停运</div>
+    </div>
+    <div class="card-meta">
+      <a href="http://www.iheima.com/article-399553.html" target="_blank">i黑马</a>
+      <span>7月15日</span>
+    </div>
+    <div class="card-body">
+      新规今日正式施行：禁止 AI 诱导情感依赖（连续对话超 2 小时需提醒）、禁止生成自残/暴力内容。字节豆包与阿里通义千问同步下线用户自建智能体功能，网易妙时（AI 情感陪伴应用）7 月 14 日正式停运。上海已下架违规智能体 <strong>1.4 万余个</strong>、处置违规账号 <strong>1.8 万余个</strong>。
+    </div>
+    <div class="card-insight">全球首个专门针对 AI 拟人化互动的监管法规落地。短期内"自建智能体"功能消失会影响用户体验，但合规化是 AI 走向主流的必经之路。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top"><span class="stars s3">★★★☆☆</span><div class="card-title">其他动态</div></div>
+    <table class="card-table">
+      <tr><th style="width:90px">方向</th><th>动态</th></tr>
+      <tr>
+        <td class="hl">Agent 手机</td>
+        <td>StepFun 发布 STEPX Neo——全球首款 LLM 原生手机，Agent "Amoo" 替代 App 交互。<a href="http://ex.chinadaily.com.cn/exchange/partners/70/rss/channel/www/columns/y38633/stories/WS6a56f04aa310986e2b4655a1.html" target="_blank">China Daily</a> · 7/15</td>
+      </tr>
+      <tr>
+        <td class="hl">可解释性</td>
+        <td>Anthropic 发布 J-lens——首次在 Claude 内部观察到可语言化表征，为理解模型"思考"开辟新路。<a href="https://www.163.com/dy/article/L1QPOGFL05119734.html" target="_blank">网易</a> · 7/15</td>
+      </tr>
+      <tr>
+        <td class="hl">端侧 AI</td>
+        <td>苹果与 PrismML 洽谈——将 54GB 大模型压缩至不到 4GB，270 亿参数直接跑在 iPhone 上。<a href="https://36kr.com" target="_blank">36氪</a> · 7/14</td>
+      </tr>
+      <tr>
+        <td class="hl">价格竞争</td>
+        <td>OpenAI、SpaceXAI、Meta 同步强调 token 效率而非 benchmark 分数——竞争从"能力"转向"单位成本产出"。<a href="https://www.exmoo.com/article/262785.html" target="_blank">Exmoo</a> · 7/15</td>
+      </tr>
+      <tr>
+        <td class="hl">高盛报告</td>
+        <td>AI 行业从"双雄并立"转向多极化，企业加速从大模型转向轻量化小模型。<a href="https://fund.eastmoney.com/a/202607143805778387.html" target="_blank">东方财富</a> · 7/14</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Back to home -->
+  <div style="text-align:center;margin-top:40px;">
+    <a href="#" data-page="home" onclick="switchPage('home')" style="color:var(--accent);text-decoration:none;font-size:14px;font-weight:500;">← 返回首页</a>
+  </div>
+</div>
+
+<!-- ═══════════ STOCK PAGE ═══════════ -->
+<div class="page" id="page-stock">
+  <div class="page-header">
+    <h1>📈 股市行情简报</h1>
+    <p class="sub">2026年7月14日 - 15日</p>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s5">★★★★★</span>
+      <div class="card-title">A 股午盘：科创 50 大跌 3.67%，创新药爆发，半导体集体调整</div>
+    </div>
+    <div class="card-meta">
+      <a href="https://finance.eastmoney.com/a/202607153807237961.html" target="_blank">东方财富</a>
+      <a href="http://stock.stockstar.com/IG2026071500020538.shtml" target="_blank">证券之星</a>
+      <span>7月15日 午盘</span>
+    </div>
+    <div class="card-body">
+      <table class="card-table" style="margin-bottom:14px;">
+        <tr><th>指数</th><th style="width:80px">点位</th><th style="width:70px">涨跌幅</th></tr>
+        <tr><td class="hl">上证指数</td><td>3,963.90</td><td>-0.08%</td></tr>
+        <tr><td class="hl">深证成指</td><td>14,868.23</td><td>-0.38%</td></tr>
+        <tr><td class="hl">创业板指</td><td>3,837.23</td><td>-0.36%</td></tr>
+        <tr><td class="hl" style="color:#c75b39">科创50</td><td style="color:#c75b39">1,936.06</td><td style="color:#c75b39;font-weight:700">-3.67%</td></tr>
+      </table>
+      两市半日成交 <strong>1.72 万亿</strong>（放量~900亿），全市场超 <strong>3,600 只个股上涨</strong>（指数绿但个股红）。<br><br>
+      <strong>领涨：</strong>创新药/CRO 大爆发（博瑞医药、迪哲医药 20CM 涨停，哈药股份 <strong>4 连板</strong>），白酒回暖（金种子酒涨停），零售异动（新华百货、宁波中百涨停）。上半年创新药出海 <strong>81 笔交易、金额约 1,100 亿美元</strong>。<br>
+      <strong>领跌：</strong>半导体产业链（德明利一字跌停，华峰测控、佰维存储跌超 11%），先进封装（托伦斯 -16%），存储芯片。<br><br>
+      机构判断：板块呈现明显的"高低切换"——资金从高位科技流出，流入低位消费医药。半导体调整属前期涨幅过大后的拥挤度出清，非产业逻辑证伪。
+    </div>
+    <div class="card-insight">今日关键词——"分化"。指数绿但个股红，科技弱但消费强。半导体调整是否一日游，看明天能否企稳。创新药有半年出海业绩支撑，持续性相对可靠。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s4">★★★★☆</span>
+      <div class="card-title">美国 6 月 CPI 超预期降温，美联储 7 月加息概率降至 15.5%</div>
+    </div>
+    <div class="card-meta">
+      <span>综合报道</span>
+      <span>7月15日</span>
+    </div>
+    <div class="card-body">
+      美国 6 月 CPI 同比 <strong>3.5%</strong>（预期 3.8%），环比 <strong>-0.4%</strong>（2020 年来首次环比下降），核心 CPI 同比 2.6%。CME FedWatch 显示 7 月维持利率不变（3.50%-3.75%）概率升至 <strong>84.5%</strong>，加息 25bp 概率降至 15.5%。但 9 月累计加息概率仍约 50%。数据公布后美债收益率大幅走低。
+    </div>
+    <div class="card-insight">通胀降温缓解了短期加息压力，对 A 股风险偏好是正面信号。但中东局势推升油价（美伊冲突复燃，油价单日涨超 9%）是最大变数——油价持续走高可能重新点燃通胀预期。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s3">★★★☆☆</span>
+      <div class="card-title">市场关注：光互联/CPO 升温，黄仁勋否认 Rubin Ultra 延期，Nvidia Q1 营收 $816 亿</div>
+    </div>
+    <div class="card-meta">
+      <a href="https://www.xinminweekly.com.cn/shenghuo/2026/07/15/47523.html" target="_blank">新民周刊</a>
+      <a href="https://sg.finance.yahoo.com/news/nvidia-signals-broadening-ai-demand-144224755.html" target="_blank">Yahoo Finance</a>
+      <span>7月14-15日</span>
+    </div>
+    <div class="card-body">
+      800G/1.6T 光模块放量确定性高，光互联作为 AI 算力刚需持续受关注。黄仁勋在摩根士丹利闭门路演中否认 Rubin Ultra 推迟至 2028 年——"只是架构优化，明年正式出货"。Nvidia FY2027 Q1 营收 <strong>$816 亿</strong>（+85% YoY），其中数据中心 $752.5 亿，Q2 指引 $910 亿。花旗将其列为最看好的大盘数据中心半导体股票。但市值已从峰值回落超 <strong>$1 万亿</strong>。
+    </div>
+    <div class="card-insight">英伟达长期逻辑不变，但市场等的不是"AI 需不需要算力"，而是"算力采购增速是否已见顶"。Q2 业绩能否兑现 $910 亿指引是下一个关键验证点。</div>
+  </div>
+
+  <div style="text-align:center;margin-top:40px;">
+    <a href="#" data-page="home" onclick="switchPage('home')" style="color:var(--accent);text-decoration:none;font-size:14px;font-weight:500;">← 返回首页</a>
+  </div>
+</div>
+
+<!-- ═══════════ EXAM PAGE ═══════════ -->
+<div class="page" id="page-exam">
+  <div class="page-header">
+    <h1>🎓 考研备考专栏</h1>
+    <p class="sub">目标：核工程、核技术、材料科学、辐射探测及工科相关专业 · 2026年7月14-15日</p>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s5">★★★★★</span>
+      <div class="card-title">"多所高校停招学硕"冲上热搜，27 考研三大改革全面落地</div>
+    </div>
+    <div class="card-meta">
+      <a href="https://edu.cctv.com/2026/07/14/ARTINBGtPr6lBxD95DTtbNzf260714.shtml" target="_blank">央视新闻</a>
+      <a href="https://www.xdf.cn/1020/202607/15275015.html" target="_blank">新东方</a>
+      <a href="https://m.gmw.cn/2026-07/14/content_1304531951.htm" target="_blank">光明网</a>
+      <span>7月14-15日</span>
+    </div>
+    <div class="card-body">
+      7 月 14 日，"多所高校宣布停招学硕"冲上微博热搜：<strong>复旦大学</strong>数学学院 2027 年起不再招学硕；<strong>浙江大学</strong>超 10 个学院仅招专硕；<strong>上海交通大学</strong>数学学院停招学硕。全国专硕招生占比稳定在<strong>三分之二以上</strong>，学硕定位已转向"博士预备队"。<br><br>
+      <strong>三大改革核心：</strong><br>
+      ① <strong>招生结构重塑</strong>——专硕成主流，34 所自划线高校关闭专硕调学硕通道；<br>
+      ② <strong>专业课统考扩围至 25 门</strong>——计算机 408、教育学 311/333 等强制全国统考，自命题大幅压缩；<br>
+      ③ <strong>调剂规则全面收紧</strong>——跨门类调剂门槛抬高，热门专业单独划线高出国家线 20-40 分。
+    </div>
+    <div class="card-insight">对核工程考生的直接影响：① 优先确认目标院校是否停招学硕或改统考——现在到 9 月是信息密集窗口；② 如无明确读博计划，优先选专硕（上岸概率更高）；③ 调剂难度大增，"一志愿上岸"比往年更关键。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s4">★★★★☆</span>
+      <div class="card-title">核工程考研择校速览：清华推免已开放，多校 9 月发布简章</div>
+    </div>
+    <div class="card-meta">
+      <a href="https://yzbm.tsinghua.edu.cn/publish/s01/s0103/detail/2ede1fca-d9a0-407a-9d68-3475494848b7/" target="_blank">清华研招</a>
+      <a href="https://yz.chsi.com.cn" target="_blank">研招网</a>
+      <span>7月15日整理</span>
+    </div>
+    <div class="card-body">
+      <table class="card-table">
+        <tr><th>院校</th><th style="width:45px">学科</th><th style="width:55px">复试线</th><th style="width:50px">统招</th><th>当前状态与特色</th></tr>
+        <tr><td class="hl">清华大学</td><td>A+</td><td>340+</td><td>个位数</td><td>推免报名 7.1-7.28 开放中，统考名额极有限，竞争残酷</td></tr>
+        <tr><td class="hl" style="color:#4a7c59">西安交大</td><td style="color:#4a7c59;font-weight:600">A+</td><td>~300</td><td>~60</td><td style="color:#4a7c59"><strong>性价比最高 A+</strong>，统招最多，9 月发简章</td></tr>
+        <tr><td class="hl">哈工程</td><td>A-</td><td>251</td><td>~89</td><td><strong>保护一志愿</strong>，常需调剂，舰船核动力国防特色</td></tr>
+        <tr><td class="hl">四川大学</td><td>A-</td><td>300</td><td>~21</td><td>720 所近年扩招，核技术国家重点学科</td></tr>
+        <tr><td class="hl">中科大</td><td>A+</td><td>330+</td><td>中等</td><td>科学岛分院奖助优厚（3.5-4.2 万/年+特等奖 10 万）</td></tr>
+        <tr><td class="hl">南华大学</td><td>B+</td><td>302/298</td><td>较多</td><td>核工业就业直通车，就业率 98%+</td></tr>
+      </table>
+    </div>
+    <div class="card-insight">建议策略：西交（A+ 黑马、统招最多、分数线最低）作主攻；哈工程（保护一志愿、军工就业）作稳妥备选；清华/中科大适合极强竞争力的考生。即日起每周至少查看一次目标院校研招网。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <span class="stars s3">★★★☆☆</span>
+      <div class="card-title">今日备考要点</div>
+    </div>
+    <div class="card-body">
+      <strong>政治时政：</strong>《AI 拟人化互动管理暂行办法》7 月 15 日施行（科技伦理考点）；美国 6 月 CPI 超预期降温（宏观经济与国际政治考点）；国务院批复《扩大消费"十五五"规划》（国内大循环考点）。<br><br>
+      <strong>英语：</strong>今日长难句——定语从句嵌套。真题例句："The method that the researchers who worked on the project developed has been widely adopted." 主句为 "The method has been widely adopted"，嵌套两层定语从句。关注阅读"态度题"——极端词（must/never/all）通常为错误选项。<br><br>
+      <strong>专业课（核工程方向）：</strong>NaI(Tl) 闪烁体探测器能量分辨率的影响因素——统计涨落、光收集效率、光电倍增管量子效率。与核医学成像课程中闪烁体探测器知识直接关联。<br><br>
+      <strong>材料科学基础：</strong>位错的三种基本类型（刃型/螺型/混合）及其运动方式（滑移/攀移）——高频考点，常考查位错对材料力学性能的影响。
+    </div>
+    <div class="card-insight">今天最值得记忆的 3 个知识点：① 位错三类及滑移攀移区别（材料科学基础高频）② 新发展格局与国内大循环（政治必考，近 3 年连续考查）③ NaI(Tl) 能量分辨率影响因素（辐射探测核心，与核医学成像直接关联）。</div>
+  </div>
+
+  <div style="text-align:center;margin-top:40px;">
+    <a href="#" data-page="home" onclick="switchPage('home')" style="color:var(--accent);text-decoration:none;font-size:14px;font-weight:500;">← 返回首页</a>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <p>📌 本报由 AI Agent 自动生成，仅供信息参考，不构成任何投资建议或考研决策依据。</p>
+  <p>Generated by Claude · 2026-07-15 08:00 CST · 仅收录过去 24 小时资讯</p>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  function switchPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + name);
+    if (target) target.classList.add('active');
+
+    document.querySelectorAll('.topbar a').forEach(a => a.classList.remove('active'));
+    const navLink = document.querySelector('.topbar a[data-page="' + name + '"]');
+    if (navLink) navLink.classList.add('active');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Update URL hash
+    if (name === 'home') {
+      history.replaceState(null, '', '#');
+    } else {
+      history.replaceState(null, '', '#' + name);
+    }
+  }
+
+  // Nav clicks
+  document.querySelectorAll('.topbar a').forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      switchPage(this.dataset.page);
+    });
+  });
+
+  // Entry card clicks
+  document.querySelectorAll('.entry-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      switchPage(this.dataset.page);
+    });
+  });
+
+  // "返回首页" links
+  document.querySelectorAll('a[data-page="home"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      switchPage('home');
+    });
+  });
+
+  // Load from hash
+  const hash = window.location.hash.replace('#', '');
+  if (hash && ['ai','stock','exam'].includes(hash)) {
+    switchPage(hash);
+  }
+
+  // Scroll to top button
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 500);
+  });
+</script>
+
+</body>
+</html>
