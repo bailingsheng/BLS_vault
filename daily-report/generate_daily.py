@@ -16,7 +16,6 @@
 import os
 import sys
 import json
-import hashlib
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -351,7 +350,7 @@ def make_top3_item(rank, title, desc):
 def search_tavily(query: str, client: TavilyClient) -> list[dict]:
     """Search using Tavily API, return list of results with url, title, content snippet."""
     try:
-        resp = client.search(query, search_depth="news", max_results=5, days=1)
+        resp = client.search(query, search_depth="basic", max_results=5, include_domains=[])
         results = []
         for r in resp.get("results", []):
             results.append({
@@ -362,7 +361,7 @@ def search_tavily(query: str, client: TavilyClient) -> list[dict]:
             })
         return results
     except Exception as e:
-        print(f"  [WARN] Tavily search failed for '{query}': {e}")
+        print(f"  [WARN] Tavily search failed for '{query[:50]}...': {type(e).__name__}: {e}")
         return []
 
 
@@ -383,7 +382,7 @@ def call_deepseek(prompt: str, api_key: str, max_tokens: int = 4000) -> str:
     """Call DeepSeek API (OpenAI-compatible)."""
     client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
     resp = client.chat.completions.create(
-        model="deepseek-chat",
+        model="deepseek-v4-flash",  # 2026年7月24日后 deepseek-chat 将废弃
         max_tokens=max_tokens,
         temperature=0.3,
         messages=[
@@ -494,8 +493,10 @@ def main():
         data = json.loads(resp_text.strip())
     except Exception as e:
         print(f"  ERROR: DeepSeek 返回解析失败: {e}")
-        if 'resp_text' in dir():
+        try:
             print(f"  原始响应前500字符: {resp_text[:500]}...")
+        except:
+            print("  无法获取原始响应")
         sys.exit(1)
 
     # ── Step 4: Generate HTML ──
