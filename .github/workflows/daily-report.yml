@@ -44,6 +44,12 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Send to DingTalk
+        working-directory: daily-report
+        env:
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
+        run: python dingtalk_notify.py
+
       - name: Commit HTML back to repo
         if: success()
         run: |
