@@ -133,12 +133,12 @@
     <div class="entry-card" onclick="switchPage('ai')">
       <div class="icon">🤖</div><h2>AI 技术快讯</h2>
       <p class="desc">大模型动态、开源生态、开发工具、行业政策——只收录真正重要的变化。</p>
-      <span class="count">0 条今日资讯</span>
+      <span class="count">1 条今日资讯</span>
     </div>
     <div class="entry-card" onclick="switchPage('stock')">
       <div class="icon">📈</div><h2>股市行情简报</h2>
       <p class="desc">宏观市场、AI 产业链、热点板块轮动——聚焦影响今日市场的关键事件。</p>
-      <span class="count">0 条今日资讯</span>
+      <span class="count">1 条今日资讯</span>
     </div>
     <div class="entry-card" onclick="switchPage('exam')">
       <div class="icon">🎓</div><h2>考研备考专栏</h2>
@@ -149,8 +149,16 @@
   <div class="summary">
     <h2>今日 Top 3 速览</h2>
     <div class="summary-grid">
-      <div class="summary-col"><h3>🤖 AI</h3></div>
-      <div class="summary-col"><h3>📈 股市</h3></div>
+      <div class="summary-col"><h3>🤖 AI</h3><div class="summary-item">
+        <div class="rank">01</div>
+        <div class="stitle">How an AI tool is improving NH</div>
+        <div class="sdesc">AI在医疗领域的落地应用持续加速，可显著优化公共医疗资源分配。</div>
+      </div></div>
+      <div class="summary-col"><h3>📈 股市</h3><div class="summary-item">
+        <div class="rank">01</div>
+        <div class="stitle">SpaceX share price drops below</div>
+        <div class="sdesc">SpaceX股价波动反映出市场对火箭公司商业化前景的谨慎态度。</div>
+      </div></div>
       <div class="summary-col"><h3>🎓 考研</h3></div>
     </div>
   </div>
@@ -162,7 +170,11 @@
     <h1>🤖 AI 技术快讯</h1>
     <p class="sub">2026-07-15 - 2026-07-16 · 仅收录真正有价值的变化</p>
   </div>
-  <p style='color:var(--text-muted);text-align:center;padding:40px;'>今日无重大资讯</p>
+  <p style='color:var(--text-muted);text-align:center;padding:40px;'>今日无重大资讯</p><div class="card">
+    <div class="card-top"><span class="stars s3">★★★☆☆</span><div class="card-title">其他动态</div></div>
+    <table class="card-table"><tr><th style="width:100px">主题</th><th>动态</th></tr><tr><td class="hl">How an AI tool is improvi</td><td>一款名为Heidi的AI工具正在英国西米德兰兹地区的15个NHS信托机构推广，旨在减少患者等待时间。该应用通过自动记录和整理问诊信息，提升医生工作效率。 <a href="https://www.bbc.com/news/articles/cjrgrxgexjro" target="_blank">BBC News</a> · 2026-07-15</td></tr>
+</table>
+  </div>
   <div class="back-link"><a onclick="switchPage('home')">← 返回首页</a></div>
 </div>
 
@@ -172,7 +184,12 @@
     <h1>📈 股市行情简报</h1>
     <p class="sub">2026-07-15 - 2026-07-16</p>
   </div>
-  <p style='color:var(--text-muted);text-align:center;padding:40px;'>今日无重大资讯</p>
+  <div class="card">
+    <div class="card-top"><span class="stars s5">★★★★★</span><div class="card-title">SpaceX share price drops below stock market debut</div></div>
+    <div class="card-meta"><a href="https://www.bbc.com/news/articles/clyl33q0yl0o" target="_blank">BBC News</a> <span>2026-07-15</span></div>
+    <div class="card-body">SpaceX上市一个月后股价跌破发行价，交易波动剧烈。该公司此前IPO创下历史，但市场对其盈利模式存在疑虑。</div>
+    <div class="card-insight">SpaceX股价波动反映出市场对火箭公司商业化前景的谨慎态度。</div>
+  </div>
   <div class="back-link"><a onclick="switchPage('home')">← 返回首页</a></div>
 </div>
 
