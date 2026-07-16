@@ -559,6 +559,19 @@ def main():
     OUTPUT_FILE.write_text(html, encoding="utf-8")
     print(f"  已写入: {OUTPUT_FILE}")
     print(f"  文件大小: {OUTPUT_FILE.stat().st_size:,} bytes")
+
+    # 同时输出 JSON 摘要，供钉钉机器人使用
+    summary = {
+        "date": TODAY_STR,
+        "counts": {"ai": len(ai_all), "stock": len(stock_data), "exam": len(exam_data)},
+        "tops": {
+            "ai": [{"title": a["title"][:50], "desc": a.get("insight", "")[:50]} for a in sorted(ai_all, key=lambda x: x.get("stars", 0), reverse=True)[:3]],
+            "stock": [{"title": a["title"][:50], "desc": a.get("insight", "")[:50]} for a in sorted(stock_data, key=lambda x: x.get("stars", 0), reverse=True)[:3]],
+            "exam": [{"title": a["title"][:50], "desc": a.get("insight", "")[:50]} for a in sorted(exam_data, key=lambda x: x.get("stars", 0), reverse=True)[:3]],
+        },
+    }
+    (OUTPUT_FILE.parent / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+
     print(f"\n=== 完成! ===")
     print(f"  AI 资讯: {len(ai_all)} 条")
     print(f"  股市资讯: {len(stock_data)} 条")
