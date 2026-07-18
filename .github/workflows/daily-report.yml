@@ -2,7 +2,7 @@ name: Daily Report Generator
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # 北京时间 08:00
+    - cron: "30 22 * * *"   # UTC 22:30 ≈ 北京 06:30，补偿排队延迟 → 约8点到达
   workflow_dispatch:
 
 permissions:
