@@ -37,7 +37,9 @@ import requests
 # ── Config ──
 BEIJING_TZ = timezone(timedelta(hours=8))
 TODAY = datetime.now(BEIJING_TZ)
+WEEKDAYS = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
 TODAY_STR = TODAY.strftime("%Y-%m-%d")
+TODAY_WEEKDAY = WEEKDAYS[TODAY.weekday()]
 YESTERDAY_STR = (TODAY - timedelta(days=1)).strftime("%Y-%m-%d")
 OUTPUT_FILE = Path(__file__).parent / "index.html"
 
@@ -225,7 +227,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <!-- ═══════ HOME ═══════ -->
 <div class="page active" id="page-home">
   <div class="home-hero">
-    <div class="tag">{today} · 星期三</div>
+    <div class="tag">{today} · {weekday}</div>
     <h1>每日资讯日报</h1>
     <p class="sub">过去24小时 · AI 技术快讯 + 股市行情 + 考研备考</p>
   </div>
@@ -544,6 +546,7 @@ def main():
 
     html = HTML_TEMPLATE.format(
         today=TODAY_STR,
+        weekday=TODAY_WEEKDAY,
         yesterday=YESTERDAY_STR,
         ai_major_count=len(ai_all),
         stock_count=len(stock_data),
